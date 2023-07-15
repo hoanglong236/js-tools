@@ -1,0 +1,16 @@
+{
+  "name": "fs-js-tools",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "jest": "^29.6.1",
+    "n-readlines": "^1.0.1",
+    "pg": "^8.11.1"
+  }
+}

@@ -1,7 +1,7 @@
 const fs = require('fs');
-const { listFiles } = require('../list-files-service');
+const { recursiveListFiles } = require('../list-files-util');
 
-describe('listFiles', () => {
+describe('recursiveListFiles', () => {
   it('Should return files (including files of subdirectories)', () => {
     // Setup
     const testFolder = __dirname + '\\test-rs-' + Math.floor(Math.random() * 1000);
@@ -22,7 +22,7 @@ describe('listFiles', () => {
     fs.writeFileSync(testFolder + '\\unused\\test\\index.test.js', 'Nothing');
 
     // Run
-    const files = listFiles(testFolder, ['unused'], ['js', 'json', 'gitignore']);
+    const files = recursiveListFiles(testFolder, ['unused'], ['ignore']);
 
     // Asserts
     expect(files.length).toBe(5);
@@ -48,7 +48,7 @@ describe('listFiles', () => {
     fs.writeFileSync(testFolder + '\\index.js', 'Nothing');
 
     // Run
-    const files = listFiles(testFolder, [], ['js']);
+    const files = recursiveListFiles(testFolder);
 
     // Asserts
     expect(files.length).toBe(1);
@@ -56,5 +56,22 @@ describe('listFiles', () => {
 
     // Clear test resources
     fs.rmSync(testFolder, { recursive: true, force: true });
+  });
+
+  it('Should return [] when path is not exists', () => {
+    // Setup
+    const testFolder = __dirname + '\\test-rs-' + Math.floor(Math.random() * 1000);
+
+    // Run
+    const files = recursiveListFiles(testFolder);
+
+    // Asserts
+    expect(files.length).toBe(0);
+  });
+
+  it('Should return [] when path is null or empty', () => {
+    // Asserts
+    expect(recursiveListFiles('').length).toBe(0);
+    expect(recursiveListFiles(null).length).toBe(0);
   });
 });

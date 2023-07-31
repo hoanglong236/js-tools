@@ -5,6 +5,7 @@ const {
   execPromisePoolForChunks,
   isStringContainsAtLeastOneKeyword,
 } = require('./common-util');
+const { recursiveListFiles } = require('./list-files-util');
 
 module.exports = {
   nthIndexOf,
@@ -12,4 +13,5 @@ module.exports = {
   chunkArray,
   execPromisePoolForChunks,
   isStringContainsAtLeastOneKeyword,
+  recursiveListFiles,
 };

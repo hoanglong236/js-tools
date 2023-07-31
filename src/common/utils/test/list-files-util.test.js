@@ -11,6 +11,7 @@ describe('recursiveListFiles', () => {
     fs.mkdirSync(testFolder + '\\services\\test');
     fs.mkdirSync(testFolder + '\\unused');
     fs.mkdirSync(testFolder + '\\unused\\test');
+    fs.mkdirSync(testFolder + '\\empty');
 
     fs.writeFileSync(testFolder + '\\index.js', 'Nothing');
     fs.writeFileSync(testFolder + '\\data.json', 'Nothing');
